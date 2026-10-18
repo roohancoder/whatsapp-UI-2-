@@ -1,0 +1,790 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WhatsApp UI</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .nav {
+            display: flex;
+            width: 100%;
+            height: 75px;
+            background-color: rgb(233, 233, 233);
+        }
+
+        .nav1 {
+            border: 1px solid rgb(211, 211, 211);
+            padding: 20px;
+            width: 30%;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav2 {
+            border: 1px solid rgb(211, 211, 211);
+            width: 70%;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            gap: 15px;
+        }
+
+        .nav2 img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
+        .fa-circle-user {
+            font-size: 30px;
+        }
+
+        .fa-message {
+            font-size: 25px;
+            position: relative;
+            left: 400px;
+        }
+
+        .fa-ellipsis-vertical {
+            font-size: 25px;
+            position: relative;
+            left: 400px;
+        }
+
+        .typing {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+        }
+
+        .typing p {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .typing p:last-child {
+            font-size: 14px;
+            color: rgb(163, 163, 163);
+        }
+
+        .div1 {
+            width: 30%;
+            height: 92vh;
+            border: 1px solid rgb(211, 211, 211);
+            float: left;
+            overflow-y: scroll;
+
+        }
+
+        .div2 {
+            width: 70%;
+            height: 92vh;
+            border: 1px solid rgb(211, 211, 211);
+            float: right;
+            background-color: rgb(239, 234, 226);
+        }
+
+        #fa-ellipsis-vertical {
+            position: relative;
+            left: 1070px;
+        }
+
+        #fa-paperclip {
+            position: relative;
+            left: 1050px;
+        }
+
+        .p1 {
+            color: rgb(102, 102, 102);
+            background-color: rgb(183, 230, 255);
+            padding: 15px;
+            display: inline-block;
+            border-radius: 10px;
+            position: relative;
+            top: 300px;
+            left: 550px;
+        }
+
+        .p2 {
+            color: rgb(102, 102, 102);
+            background-color: rgb(165, 255, 191);
+            padding: 20px;
+            padding-right: 70px;
+            display: inline-block;
+            border-radius: 10px;
+            position: relative;
+            top: 380px;
+            left: 450px;
+        }
+
+        .p3 {
+            color: rgb(102, 102, 102);
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            padding-right: 70px;
+            display: inline-block;
+            border-radius: 10px;
+            position: relative;
+            top: 460px;
+            right: 260px;
+        }
+
+        .p4 {
+            color: rgb(102, 102, 102);
+            background-color: rgb(165, 255, 191);
+            padding: 10px;
+            padding-right: 75px;
+            display: inline-block;
+            border-radius: 10px;
+            position: relative;
+            top: 480px;
+            left: 625px;
+        }
+
+        .s1 {
+            color: blue;
+            font-size: 12px;
+            position: relative;
+            top: 333px;
+            left: 545px;
+        }
+
+        .s2 {
+            color: blue;
+            font-size: 12px;
+            position: relative;
+            top: 490px;
+            left: 485px;
+        }
+
+        .s3 {
+            color: blue;
+            font-size: 12px;
+            position: relative;
+            top: 405px;
+            left: 20px;
+        }
+
+        .last {
+            width: 100%;
+            height: 70px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            top: 690px;
+            left: 0px;
+            background-color: rgb(233, 233, 233);
+            border: 1px solid rgb(211, 211, 211);
+        }
+
+        .last i {
+            font-size: 25px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .last input {
+            flex: 1;
+            height: 45px;
+            border: 3px solid rgb(1, 40, 1);
+            border-radius: 8px;
+            padding: 0 15px;
+            font-size: 16px;
+        }
+
+        .last input:active {
+            border: 1px solid rgb(1, 40, 1);
+        }
+
+        .fa-microphone {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgb(8, 69, 16);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            color: white;
+        }
+
+        .div1nav {
+            display: flex;
+            gap: 170px;
+            padding: 20px;
+            padding-left: 30px;
+            color: rgb(102, 102, 102);
+        }
+
+        .class1 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            background-color: #dbdbdb;
+        }
+
+        .class1 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class1 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+        }
+
+        .class1 p:last-child {
+            font-size: 14px;
+            color: rgb(29, 92, 33);
+        }
+
+        .type {
+            position: relative;
+            top: 20px;
+            right: 110px;
+        }
+
+        .clas2 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class2 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class2 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 40px;
+            left: 20px;
+        }
+
+        .class2 p:last-child {
+            font-size: 14px;
+        }
+
+        .class2 .inbox {
+            position: relative;
+            bottom: 20px;
+            left: -82px;
+        }
+
+        .class3 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class3 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class3 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 15px;
+        }
+
+        .class3 p:last-child {
+            font-size: 14px;
+        }
+
+        .class3 .ok {
+            position: absolute;
+            bottom: 590px;
+            right: 1795px;
+        }
+
+        .class4 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class4 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class4 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 15px;
+        }
+
+        .class4 p:last-child {
+            font-size: 14px;
+        }
+
+        .class4 .chal {
+            position: absolute;
+            bottom: 510px;
+            right: 1752px;
+        }
+
+
+         .class5 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class5 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class5 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: -0px;
+            right:7px;
+        }
+
+        .class5 p:last-child {
+            font-size: 14px;
+        }
+
+        .class5 .haha {
+            position: absolute;
+            bottom: 420px;
+            right: 1773px;
+        }
+        
+
+
+        .class6 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class6 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class6 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 10px;
+            right:7px;
+        }
+
+        .class6 p:last-child {
+            font-size: 14px;
+        }
+
+        .class6 .hello {
+            position: absolute;
+            bottom: 350px;
+            right: 1785px;
+        }
+
+
+
+        
+        .class7 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class7 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class7 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 10px;
+            right:7px;
+        }
+
+        .class7 p:last-child {
+            font-size: 14px;
+        }
+
+        .class7 .yesyes {
+            position: absolute;
+            bottom: 270px;
+            right: 1773px;
+        }
+
+
+         .class8 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class8 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class8 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 10px;
+            right:7px;
+        }
+
+        .class8 p:last-child {
+            font-size: 14px;
+        }
+
+        .class8 .nono {
+            position: absolute;
+            bottom: 190px;
+            right: 1785px;
+        }
+
+
+
+        .class9 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class9 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class9 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 10px;
+            right:7px;
+        }
+
+        .class9 p:last-child {
+            font-size: 14px;
+        }
+
+        .class9 .nahi {
+            position: absolute;
+            bottom: 110px;
+            right: 1790px;
+        }
+        
+
+
+        .class10 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class10 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class10 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 10px;
+            right:7px;
+        }
+
+        .class10 p:last-child {
+            font-size: 14px;
+        }
+
+        .class10 .thankyou {
+            position: absolute;
+            bottom: 30px;
+            right: 1750px;
+        }
+
+
+
+        
+        .class11 {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .class11 img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        .class11 p {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0px 0px 5px 0px;
+            display: inline-block;
+            position: relative;
+            bottom: 10px;
+            right:7px;
+        }
+
+        .class11 p:last-child {
+            font-size: 14px;
+        }
+
+        .class11 .thanksbro {
+            position: absolute;
+            bottom: 30px;
+            right: 1750px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav">
+
+        <div class="nav1">
+            <i class="fa-regular fa-circle-user"></i>
+            <i class="fa-regular fa-message"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+
+        <div class="nav2">
+            <img src="https://imgcdn.stablediffusionweb.com/2024/10/2/e422911e-e632-4a91-a4af-110348c278f4.jpg" alt="">
+
+            <div class="typing">
+                <p>Swati-THN</p>
+                <p>typing...</p>
+            </div>
+
+            <i class="fa-solid fa-paperclip" id="fa-paperclip"></i>
+            <i class="fa-solid fa-ellipsis-vertical" id="fa-ellipsis-vertical"></i>
+        </div>
+
+    </div>
+
+    <div class="div1">
+
+        <nav class="div1nav">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <p>Search or start new chat</p>
+        </nav>
+
+        <div class="class1">
+            <img src="https://imgcdn.stablediffusionweb.com/2024/10/2/e422911e-e632-4a91-a4af-110348c278f4.jpg" alt="">
+            <p>Swati-THN</p>
+
+            <div class="type">
+                <p>typing...</p>
+            </div>
+        </div>
+
+        <div class="class2">
+            <img src="https://i.pinimg.com/originals/4e/c2/9f/4ec29f1091a5d871956681d02143ab88.jpg" alt="">
+            <p>Chinto Voda</p>
+            <p class="inbox">In box top n center</p>
+        </div>
+
+        <div class="class3">
+            <img src="https://static.vecteezy.com/system/resources/previews/038/974/578/non_2x/ai-generated-professional-portrait-of-a-competent-woman-free-photo.jpg" alt="">
+            <p>Madiha</p>
+            <p class="ok">Ok</p>
+        </div>
+
+<div class="class4">
+<img src="https://i.pinimg.com/originals/49/26/95/4926955f84f26a32710ce41439a45178.jpg" alt="">
+<p>Affan</p>
+<p class="chal">Chal Chal</p>
+
+
+</div>
+
+
+<div class="class5">
+<img src="https://cdn.pixabay.com/photo/2023/04/02/11/20/ai-generated-7894424_1280.jpg" alt="">
+<p>Shayan</p>
+<p class="haha">Haha...</p>
+
+
+</div>
+
+
+<div class="class6">
+<img src="https://enhanceai.art/_next/image?url=https:%2F%2Fenhanceaiart.s3.us-west-2.amazonaws.com%2Fuploads%2F075374b9-e889-478d-b9bc-8dbe9748c16a.png&w=640&q=75" alt="">
+<p>Hamdan</p>
+<p class="hello">Hello</p>
+
+
+
+</div>
+
+
+<div class="class7">
+<img src="https://static.vecteezy.com/system/resources/thumbnails/036/493/292/small_2x/ai-generated-warm-inviting-image-of-a-boy-in-a-hooded-coat-ai-generative-photo.jpg" alt="">
+<p>Roohan</p>
+<p class="yesyes">Yesyes</p>
+
+
+
+</div>
+
+
+<div class="class8">
+<img src="https://wallpapers.com/images/hd/boy-phone-b4ys3o2pjawly7ey.jpg" alt="">
+<p>Usaid</p>
+<p class="nono">Nono</p>
+
+
+
+</div>
+
+
+
+<div class="class9">
+<img src="https://cdn.pixabay.com/photo/2024/04/08/18/41/boy-8684221_1280.jpg" alt="">
+<p>Taha</p>
+<p class="nahi">Nahi</p>
+
+
+    </div>
+
+<div class="class10">
+<img src="https://image.lexica.art/full_jpg/c65b6be3-425a-4159-add3-0cd370c15b94" alt="">
+<p>Talha</p>
+<p class="thankyou">Thank you</p>
+
+
+  </div>
+
+
+  
+    </div>
+
+    <div class="div2">
+
+        <p class="p1">14/OCTOBER/2026</p>
+
+        <p class="p2">
+            Hey! Have you seen WhatsApp Web Feature?
+        </p>
+
+        <p class="p3">
+            Yeah... Awsummmmm 😀 😍 🤩
+        </p>
+
+        <p class="p4">
+            Find more details on
+            <a href="https://web.whatsapp.com/">https://web.whatsapp.com/</a>.<br>
+            I have just published an article about it.
+        </p>
+
+        <span class="s1">02:00pm✓✓</span>
+        <span class="s2">03:00pm✓✓</span>
+        <span class="s3">02:30pm✓✓</span>
+
+        <nav class="last">
+            <i class="fa-regular fa-face-smile"></i>
+            <input type="text" placeholder="Type a message">
+            <i class="fa-solid fa-microphone" style="color: white;"></i>
+        </nav>
+
+    </div>
+
+</body>
+
+</html> 
+
+
+
+
+
+
+
+
+
